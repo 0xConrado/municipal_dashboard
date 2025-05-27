@@ -1,26 +1,39 @@
-// frontend/src/components/SecretariaList.js
-
 import React, { useEffect, useState } from 'react';
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
 import { fetchSecretarias } from '../api';
 
-function SecretariaList({ prefeituraId, onSelect }) {
+function SecretariaList() {
   const [secretarias, setSecretarias] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (prefeituraId) {
-      fetchSecretarias(prefeituraId).then(data => setSecretarias(data));
-    }
-  }, [prefeituraId]);
+    fetchSecretarias()
+      .then(data => {
+        setSecretarias(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError('Erro ao buscar secretarias');
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <Spinner animation="border" />;
+
+  if (error) return <Alert variant="danger">{error}</Alert>;
 
   return (
     <Container>
+      <h2 className="mb-4">Secretarias Cadastradas</h2>
       <Row>
-        {secretarias.map(secretaria => (
-          <Col key={secretaria.id} md={4} className="mb-3">
-            <Card onClick={() => onSelect(secretaria)} style={{ cursor: 'pointer' }}>
+        {secretarias.length === 0 && <p>Nenhuma secretaria cadastrada.</p>}
+        {secretarias.map(sec => (
+          <Col md={4} key={sec.id} className="mb-3">
+            <Card>
               <Card.Body>
-                <Card.Title>{secretaria.nome}</Card.Title>
+                <Card.Title>{sec.nome}</Card.Title>
+                <Card.Text>Prefeitura: {sec.prefeitura_nome || '—'}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
