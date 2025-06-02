@@ -1,0 +1,89 @@
+# ===========================
+# 🚫 Ignorar dependências e artefatos gerados
+# ===========================
+
+# Node modules (frontend)
+frontend/node_modules/
+
+# Build output do frontend
+frontend/build/
+frontend/dist/
+
+# Ambiente virtual Python
+venv/
+env/
+.venv/
+
+# Cache e arquivos compilados Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de banco SQLite (se usar)
+db.sqlite3
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.temp
+
+# Arquivos de configuração locais / segredos
+*.env
+*.local
+.env.*
+
+# ===========================
+# Configurações IDE / Editor
+# ===========================
+
+# VSCode
+.vscode/
+
+# PyCharm / JetBrains
+.idea/
+*.iml
+
+# ===========================
+# Arquivos de sistema
+# ===========================
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===========================
+# Outros arquivos
+# ===========================
+
+# Arquivos batch ou scripts locais (opcional)
+*.bat
+
+# Arquivos de cobertura de teste (exemplo para pytest-cov)
+htmlcov/
+.coverage
+.coverage.*
+
+# Arquivos estáticos coletados (Django)
+staticfiles/
+
+# Pasta media (uploads)
+media/
+
+# Arquivos de cache do pipenv
+.pipenv/
+
+# Arquivos temporários do Jupyter Notebook
+.ipynb_checkpoints/
+
+# Submódulos git (se aplicável)
+# frontend é um submódulo? Se sim, deixar assim
+# frontend/
+
+# Ignorar arquivos temporários do sistema
+*.swp
+*.swo
+*~
